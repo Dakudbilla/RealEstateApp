@@ -8,13 +8,13 @@ const Banner = ({
   title2,
   desc1,
   desc2,
-  imageurl,
-  linkname,
+  imageUrl,
+  linkName,
   buttonText,
 }) => {
   return (
     <Flex flexWrap="wrap" justifyContent="center" alignItems="center" m="10">
-      <Image src={imageurl} width={500} height alt="banner" />
+      <Image src={imageUrl} width={500} height={300} alt="banner" />
       <Box p="5">
         <Text color="gray.500" fontSize="sm" fontWeight="medium">
           {purpose}
@@ -29,10 +29,8 @@ const Banner = ({
           <break />
           {desc2}
         </Text>
-        <Link passHref href={linkname}>
-          <Button fontSize="xl" bg="blue.300" color="white">
-            {buttonText}
-          </Button>
+        <Link passHref href={linkName}>
+          <Button fontSize="xl">{buttonText}</Button>
         </Link>
       </Box>
     </Flex>
