@@ -2,10 +2,11 @@ import Head from "next/head";
 import Image from "next/image";
 import { Flex, Box, Text, Button } from "@chakra-ui/react";
 import Banner from "../components/Banner";
-import { baseURL, fetchApi } from "../utils/fetchApi";
+import { baseURl, fetchApi } from "../utils/fetchApi";
+import Property from "../components/Property";
 
-const Home = ({ propertyForRent, propertyForSale }) => {
-  console.log(propertyForRent);
+const Home = ({ propertiesForSale, propertiesForRent }) => {
+  console.log(propertiesForRent);
   return (
     <div>
       <h1>Renphona</h1>
@@ -20,9 +21,9 @@ const Home = ({ propertyForRent, propertyForSale }) => {
         imageUrl="/images/banner.jpg"
       />
       <Flex flexWrap="wrap">
-        {/**
-         * Fetch the propers and map over them for rent home
-         */}
+        {propertiesForRent.map((property) => (
+          <Property property={property} key={property.id} />
+        ))}
       </Flex>
       <Banner
         purpose="BUY A HOME"
@@ -34,27 +35,30 @@ const Home = ({ propertyForRent, propertyForSale }) => {
         linkName="/search?purpose=for-sale"
         imageUrl="/images/buy.jpg"
       />
-      {/**
-       * Fetch the propers and map over them for rent home
-       */}
+      <Flex flexWrap="wrap">
+        {propertiesForSale.map((property) => (
+          <Property property={property} key={property.id} />
+        ))}
+      </Flex>
     </div>
   );
 };
 
 export default Home;
 
-export const getStaticProps = async () => {
+export async function getStaticProps() {
   const propertyForSale = await fetchApi(
-    `${baseURL}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=6`
+    `${baseURl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=6`
   );
+  console.log({ proper: propertyForSale });
   const propertyForRent = await fetchApi(
-    `${baseURL}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=6`
+    `${baseURl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=6`
   );
 
   return {
     props: {
-      propertyForRent: propertyForRent?.hits,
-      propertyForSale: propertyForSale?.hits,
+      propertiesForSale: propertyForSale?.hits,
+      propertiesForRent: propertyForRent?.hits,
     },
   };
-};
+}
