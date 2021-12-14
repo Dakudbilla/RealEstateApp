@@ -6,10 +6,8 @@ import { baseURl, fetchApi } from "../utils/fetchApi";
 import Property from "../components/Property";
 
 const Home = ({ propertiesForSale, propertiesForRent }) => {
-  console.log(propertiesForRent);
   return (
     <div>
-      <h1>Renphona</h1>
       <Banner
         purpose="RENT A HOME"
         title1="Rental Homes for "
