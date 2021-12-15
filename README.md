@@ -5,3 +5,5 @@ to see the details of that that property.
 Data used was consumed from **Bayut API** available on [RapidApi](https://rapidapi.com/)
 
 This beautiful project was built with NextJS
+
+Visit [Live Site](https://real-estate-app-rho.vercel.app/) hosted on Vercel
