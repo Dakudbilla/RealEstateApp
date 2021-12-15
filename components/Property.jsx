@@ -25,10 +25,15 @@ const Property = ({
       <Flex
         flexWrap="wrap"
         w="420px"
-        p="5"
+        p="6"
         paddingTop="0"
         justifyContent="flex-start"
         cursor="pointer"
+        boxShadow="xs"
+        rounded="md"
+        bg="white"
+        marginBottom="1"
+        marginRight="1.5"
       >
         <Box>
           <Image

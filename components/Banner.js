@@ -30,7 +30,9 @@ const Banner = ({
           {desc2}
         </Text>
         <Link passHref href={linkName}>
-          <Button fontSize="xl">{buttonText}</Button>
+          <Button colorScheme="blue" fontSize="xl">
+            {buttonText}
+          </Button>
         </Link>
       </Box>
     </Flex>
