@@ -2,8 +2,8 @@ import Head from "next/head";
 import Image from "next/image";
 import { Flex, Box, Text, Button } from "@chakra-ui/react";
 import Banner from "../components/Banner";
+import { baseURl, fetchApi } from "../utils/fetchApi";
 import Property from "../components/Property";
-import { getPropertiesForRent, getPropertiesForSale } from "../utils/helper";
 
 const Home = ({ propertiesForSale, propertiesForRent }) => {
   return (
@@ -45,12 +45,17 @@ const Home = ({ propertiesForSale, propertiesForRent }) => {
 export default Home;
 
 export async function getStaticProps() {
-  const propertiesForSale = await getPropertiesForSale();
-  const propertiesForRent = await getPropertiesForRent();
+  const propertyForSale = await fetchApi(
+    `${baseURl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=6`
+  );
+  const propertyForRent = await fetchApi(
+    `${baseURl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=6`
+  );
+
   return {
     props: {
-      propertiesForSale: propertiesForSale,
-      propertiesForRent: propertiesForRent,
+      propertiesForSale: propertyForSale?.hits,
+      propertiesForRent: propertyForRent?.hits,
     },
   };
 }
