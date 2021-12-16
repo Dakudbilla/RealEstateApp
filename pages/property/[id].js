@@ -7,6 +7,7 @@ import millify from "millify";
 
 import { baseURl, fetchApi } from "../../utils/fetchApi";
 import ImageScrollbar from "../../components/ImageScrollbar";
+import { getPropertiesForRent, getPropertiesForSale } from "../../utils/helper";
 
 const PropertyDetails = ({
   propertyDetails: {
@@ -126,7 +127,7 @@ const PropertyDetails = ({
 
 export default PropertyDetails;
 
-export async function getServerSideProps({ params: { id } }) {
+export async function getStaticProps({ params: { id } }) {
   const data = await fetchApi(`${baseURl}/properties/detail?externalID=${id}`);
 
   return {
@@ -135,3 +136,19 @@ export async function getServerSideProps({ params: { id } }) {
     },
   };
 }
+
+export const getStaticPaths = async () => {
+  const rent = await getPropertiesForRent();
+  const sale = await getPropertiesForSale();
+
+  const paths = [...rent, ...sale].map((property) => {
+    const id = property.id.toString();
+    return {
+      params: { id },
+    };
+  });
+  return {
+    paths,
+    fallback: true,
+  };
+};
