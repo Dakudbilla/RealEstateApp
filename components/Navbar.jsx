@@ -49,7 +49,7 @@ const Navbar = () => {
         <Link href="/search?purpose=for-sale" passHref>
           <Button
             mr="4"
-            colorScheme="teal"
+            colorScheme="blue"
             variant="outline"
             leftIcon={<FcAbout />}
           >
@@ -59,7 +59,7 @@ const Navbar = () => {
         <Link href="/search?purpose=for-rent" passHref>
           <Button
             mr="4"
-            colorScheme="teal"
+            colorScheme="blue"
             variant="outline"
             leftIcon={<FcHome />}
           >
