@@ -8,6 +8,7 @@ import Property from "../components/Property";
 const Home = ({ propertiesForSale, propertiesForRent }) => {
   return (
     <div>
+
       <Banner
         purpose="RENT A HOME"
         title1="Rental Homes for "
@@ -18,11 +19,13 @@ const Home = ({ propertiesForSale, propertiesForRent }) => {
         linkName="/search?purpose=for-rent"
         imageUrl="/images/banner.jpg"
       />
+
       <Flex flexWrap="wrap">
         {propertiesForRent.map((property) => (
           <Property property={property} key={property.id} />
         ))}
       </Flex>
+
       <Banner
         purpose="BUY A HOME"
         title1={`Find & Buy Own Your `}
@@ -33,6 +36,7 @@ const Home = ({ propertiesForSale, propertiesForRent }) => {
         linkName="/search?purpose=for-sale"
         imageUrl="/images/buy.jpg"
       />
+
       <Flex flexWrap="wrap">
         {propertiesForSale.map((property) => (
           <Property property={property} key={property.id} />
@@ -43,6 +47,7 @@ const Home = ({ propertiesForSale, propertiesForRent }) => {
 };
 
 export default Home;
+
 
 export async function getStaticProps() {
   const propertyForSale = await fetchApi(
